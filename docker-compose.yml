@@ -3,6 +3,11 @@ services:
   app:
     build: .
     ports:
-      - "8000:8000"
+      - "8001:8001"
+      - "2345:2345" # delveと通信するためのポート
     volumes:
       - ./app:/app
+    security_opt:
+      - apparmor:unconfined
+    cap_add:
+      - SYS_PTRACE
